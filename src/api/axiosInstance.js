@@ -1,9 +1,19 @@
 import axios from "axios";
 
+/* ===============================
+   🌍 BASE URL (ENV SAFE)
+=============================== */
+const BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://techpaath-backend-main.onrender.com";
+
+/* ===============================
+   🚀 AXIOS INSTANCE
+=============================== */
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api",
-  withCredentials: true,       // ✅ IMPORTANT for auth + sockets
-  timeout: 15000,              // ✅ prevents hanging requests
+  baseURL: `${BASE_URL}/api`,   // 👈 add /api if backend uses it
+  withCredentials: true,
+  timeout: 30000,               // 👈 higher for Render cold start
   headers: {
     "Content-Type": "application/json",
   },
@@ -28,20 +38,23 @@ axiosInstance.interceptors.request.use(
 
 /* ===============================
    🚨 RESPONSE INTERCEPTOR
-   (GLOBAL ERROR SAFETY)
-=============================== */
+   =============================== */
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    // 🔥 TOKEN EXPIRED / INVALID
+    /* TOKEN EXPIRED / INVALID */
     if (error.response?.status === 401) {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
 
-      // soft redirect (NO hard reload)
       if (window.location.pathname !== "/login") {
         window.location.href = "/login";
       }
+    }
+
+    /* SERVER DOWN / NETWORK ERROR */
+    if (!error.response) {
+      console.error("Server unreachable or network error");
     }
 
     return Promise.reject(error);
