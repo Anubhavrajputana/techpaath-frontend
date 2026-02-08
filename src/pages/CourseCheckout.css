@@ -1,0 +1,73 @@
+.checkout-container {
+  background: linear-gradient(to bottom right, #020617, #0c1424);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+.checkout-card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 30px;
+  border-radius: 18px;
+  width: 380px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.checkout-title {
+  text-align: center;
+  font-size: 26px;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.form input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: none;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2ecc71;
+  margin-top: 20px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.msg {
+  margin-top: 15px;
+  text-align: center;
+  color: #00ffb7;
+  font-size: 15px;
+}
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.applied {
+  background: #00c853;
+  color: white;
+}
+
+.enrolled {
+  background: #2962ff;
+  color: white;
+}

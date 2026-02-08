@@ -1,0 +1,144 @@
+/* ===============================
+   FUTURISTIC FOOTER (ISOLATED)
+   =============================== */
+.footer-wrapper {
+  position: relative;
+  margin-top: 0 !important;
+
+  /* 🔥 IMPORTANT: footer ko page bg se alag karo */
+  background: linear-gradient(
+    135deg,
+    #050f22,
+    #081a33,
+    #050f22
+  );
+
+  overflow: hidden;
+  isolation: isolate; /* 🔥 SKY BLUE ISSUE FIX */
+}
+
+/* Main footer body */
+.footer-content {
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===============================
+   GLOW TOP DIVIDER
+   =============================== */
+.footer-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 85%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #6cff8d,
+    #4fc3f7,
+    transparent
+  );
+
+  transform: translateX(-50%);
+  box-shadow:
+    0 0 25px rgba(108, 255, 141, 0.9),
+    0 0 40px rgba(79, 195, 247, 0.6);
+}
+
+/* ===============================
+   FOOTER TEXT
+   =============================== */
+.footer-text {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #d0dae3;
+  letter-spacing: 0.6px;
+
+  animation: footerFadeUp 1.6s ease;
+}
+
+/* Brand highlight */
+.footer-text span {
+  font-weight: 800;
+
+  background: linear-gradient(
+    90deg,
+    #6cff8d,
+    #4fc3f7
+  );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+
+  text-shadow:
+    0 0 15px rgba(108, 255, 141, 0.6),
+    0 0 25px rgba(79, 195, 247, 0.4);
+}
+
+/* ===============================
+   FLOATING ENERGY ORBS
+   =============================== */
+.footer-wrapper::before,
+.footer-wrapper::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.footer-wrapper::before {
+  left: -70px;
+  bottom: -50px;
+  background: rgba(79, 195, 247, 0.8);
+  animation: footerFloat 12s infinite alternate;
+}
+
+.footer-wrapper::after {
+  right: -70px;
+  top: -50px;
+  background: rgba(108, 255, 141, 0.8);
+  animation: footerFloat 16s infinite alternate-reverse;
+}
+
+/* ===============================
+   ANIMATIONS
+   =============================== */
+@keyframes footerFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes footerFloat {
+  from {
+    transform: translateY(0) translateX(0);
+  }
+  to {
+    transform: translateY(-35px) translateX(25px);
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+@media (max-width: 768px) {
+  .footer-text {
+    font-size: 0.85rem;
+  }
+}

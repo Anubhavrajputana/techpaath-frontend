@@ -1,0 +1,72 @@
+.topic-page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* HERO */
+.topic-hero {
+  padding: 32px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  box-shadow: 0 0 40px rgba(56, 189, 248, 0.25);
+  text-align: center;
+}
+
+.topic-hero h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+}
+
+.topic-hero p {
+  opacity: 0.85;
+}
+
+.topic-hero-image {
+  max-width: 440px;
+  margin: 22px auto 0;
+  border-radius: 16px;
+}
+
+/* CARD */
+.topic-card {
+  padding: 26px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: 0.3s ease;
+}
+
+.topic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.35);
+}
+
+/* CODE */
+.code-block {
+  background: #020617;
+  padding: 18px;
+  border-radius: 14px;
+  color: #22c55e;
+  font-family: "Fira Code", monospace;
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+/* IMAGES */
+.topic-page img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 16px;
+}
+
+/* BORDERS */
+.highlight {
+  border-left: 5px solid #38bdf8;
+}
+
+.success {
+  border-left: 5px solid #22c55e;
+}

@@ -1,0 +1,473 @@
+/* ---------------------------------------------------------
+   ULTRA-MODERN ABOUT PAGE UI — RESPONSIVE & STABLE
+---------------------------------------------------------- */
+
+:root {
+  --bg-1: linear-gradient(135deg, #030d1f 0%, #081a33 100%);
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.12);
+  --accent: #00c6ff;
+  --accent-2: #00e676;
+  --muted: rgba(255, 255, 255, 0.75);
+  --neon: 0 0 14px rgba(0, 198, 255, 0.55);
+}
+
+/* ---------------------------------------------------------
+   GLOBAL
+---------------------------------------------------------- */
+.about-page {
+  background: var(--bg-1);
+  color: #f0faff;
+  font-family: Poppins, Inter, system-ui;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 22px;
+}
+
+/* ---------------------------------------------------------
+   HERO
+---------------------------------------------------------- */
+.about-hero {
+  padding: 110px 0 90px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.hero-left h1 {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-left .lead {
+  max-width: 540px;
+  margin: 20px 0 32px;
+  font-size: 17.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* HERO CTA */
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Base button */
+.hero-ctas button,
+.cta-actions button {
+  font-weight: 600;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Primary */
+.btn-primary {
+  background: linear-gradient(90deg, #00aaff, #00e6b8);
+  border: none;
+  color: #fff;
+  box-shadow: var(--neon);
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 16px 30px rgba(0,255,200,0.45);
+}
+
+/* Light */
+.btn-light {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+}
+
+.btn-light:hover {
+  border-color: var(--accent);
+}
+
+/* =========================================================
+   BUTTON WIDTH FIX — HERO & CTA (SAFE UPDATE)
+========================================================= */
+
+/* HERO: Get Started */
+.hero-ctas .btn-primary {
+  width: auto;
+  min-width: 220px;
+  max-width: 280px;
+  padding: 14px 34px;
+}
+
+/* HERO: Explore Courses */
+.hero-ctas .btn-light {
+  width: auto;
+  min-width: 180px;
+  padding: 13px 30px;
+}
+
+/* ---------------------------------------------------------
+   HERO CARD
+---------------------------------------------------------- */
+.hero-card {
+  background: rgba(255,255,255,0.06);
+  padding: 26px;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px);
+}
+
+.mini-stats {
+  display: flex;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.mini-stats strong {
+  font-size: 20px;
+  display: block;
+}
+
+/* ---------------------------------------------------------
+   MISSION
+---------------------------------------------------------- */
+.about-mission {
+  padding: 90px 0;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+
+.mission-left h2 {
+  font-size: 32px;
+}
+
+.mission-left p {
+  margin-top: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.mission-points {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.mission-points li {
+  list-style: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  font-size: 14px;
+}
+
+.mission-box {
+  background: rgba(255,255,255,0.05);
+  padding: 34px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(16px);
+  text-align: center;
+}
+
+/* Mission Buttons */
+.mission-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.mission-actions button {
+  padding: 13px 30px;
+  border-radius: 999px;
+  background: linear-gradient(
+    135deg,
+    rgba(0,198,255,0.22),
+    rgba(0,230,255,0.1)
+  );
+  border: 1px solid rgba(0,198,255,0.6);
+  color: #eaffff;
+}
+
+/* ---------------------------------------------------------
+   VALUES
+---------------------------------------------------------- */
+.about-values {
+  padding: 90px 0;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+.value-card {
+  padding: 28px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ---------------------------------------------------------
+   STATS
+---------------------------------------------------------- */
+.about-stats {
+  padding: 80px 0;
+}
+
+.stats-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  width: 220px;
+  padding: 28px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  text-align: center;
+}
+
+/* ---------------------------------------------------------
+   TEAM
+---------------------------------------------------------- */
+.about-team {
+  padding: 90px 0;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.team-card {
+  width: 260px;
+  padding: 24px;
+  text-align: center;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.team-avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(0,198,255,0.7);
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------------------------------------------------------
+   TESTIMONIALS
+---------------------------------------------------------- */
+.about-testimonials {
+  padding: 90px 0;
+}
+
+.testimonials-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.testimonial-card {
+  max-width: 720px;
+  padding: 34px;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.test-top {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.test-top img {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(0,198,255,0.6);
+}
+
+/* ---------------------------------------------------------
+   CTA
+---------------------------------------------------------- */
+.about-cta {
+  padding: 100px 0 140px;
+}
+
+.cta-card {
+  padding: 40px;
+  border-radius: 26px;
+  background: linear-gradient(
+    135deg,
+    rgba(0,198,255,0.22),
+    rgba(0,255,150,0.14)
+  );
+  text-align: center;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+/* CTA buttons */
+.cta-actions .btn-primary {
+  min-width: 240px;
+  max-width: 320px;
+  padding: 15px 36px;
+}
+
+.cta-actions .btn-light {
+  min-width: 200px;
+  padding: 13px 30px;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+---------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-left h1 {
+    font-size: 40px;
+  }
+
+  .hero-ctas .btn-primary,
+  .cta-actions .btn-primary {
+    min-width: 200px;
+  }
+}
+/* =========================================================
+   TESTIMONIAL SIDE ARROWS — PREMIUM NEON
+========================================================= */
+
+.test-nav {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 198, 255, 0.45);
+  background: radial-gradient(
+    circle at top left,
+    rgba(0, 198, 255, 0.35),
+    rgba(0, 198, 255, 0.12)
+  );
+  backdrop-filter: blur(10px);
+  color: #eaffff;
+  font-size: 18px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 0 18px rgba(0, 198, 255, 0.35),
+    inset 0 0 10px rgba(255, 255, 255, 0.12);
+
+  transition: all 0.35s ease;
+}
+
+/* Hover effect */
+.test-nav:hover {
+  transform: scale(1.15);
+  background: radial-gradient(
+    circle at top left,
+    rgba(0, 230, 255, 0.55),
+    rgba(0, 230, 255, 0.2)
+  );
+  box-shadow:
+    0 0 28px rgba(0, 230, 255, 0.65),
+    0 0 14px rgba(0, 230, 255, 0.45);
+}
+
+/* Click effect */
+.test-nav:active {
+  transform: scale(0.95);
+}
+
+/* Left & Right spacing polish */
+.test-nav.left {
+  margin-right: 10px;
+}
+
+.test-nav.right {
+  margin-left: 10px;
+}
+
+/* Mobile size adjustment */
+@media (max-width: 600px) {
+  .test-nav {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+  }
+}

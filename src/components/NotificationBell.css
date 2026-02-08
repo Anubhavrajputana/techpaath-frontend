@@ -1,0 +1,12 @@
+.notification-bell {
+  position: relative;
+  font-size: 1.3rem;
+  cursor: pointer;
+  margin-right: 14px;
+  color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.notification-bell:hover {
+  transform: scale(1.15);
+}

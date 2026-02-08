@@ -1,0 +1,176 @@
+/* =================================================
+   🌌 NOTES VIEWER PAGE ONLY
+   (No conflict with Notes Grid page)
+================================================= */
+
+/* ========== WRAPPER ========== */
+.notes-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  margin-top: 80px;
+
+  background: linear-gradient(135deg, #061326, #0b1f3a, #07101f);
+  color: #eaf2ff;
+
+  box-sizing: border-box;
+}
+
+/* ========== SIDEBAR ========== */
+.notes-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+
+  padding: 28px 20px;
+  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.45);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+
+  position: sticky;
+  top: 80px;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+
+  z-index: 2;
+}
+
+.notes-sidebar h2 {
+  font-size: 22px;
+  margin-bottom: 18px;
+  color: #5bc0be;
+}
+
+.notes-sidebar a {
+  display: block;
+  padding: 10px 14px;
+  margin-bottom: 6px;
+
+  color: #b7d7ff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 15px;
+
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.notes-sidebar a:hover {
+  background: rgba(91, 192, 190, 0.25);
+  color: #ffffff;
+}
+
+/* ========== CONTENT AREA ========== */
+.notes-content {
+  flex: 1;
+  min-width: 0;               /* 🔥 FLEX FIX */
+  padding: 56px;
+
+  box-sizing: border-box;
+}
+
+/* inner wrapper */
+.notes-content-inner {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ========== NOTE CARD (FULL WIDTH) ========== */
+.notes-content .note-card {
+  width: 100%;
+  margin-bottom: 80px;
+
+  padding: 56px;
+  box-sizing: border-box;
+  border-radius: 28px;
+
+  background: linear-gradient(
+    160deg,
+    rgba(20, 40, 90, 0.98),
+    rgba(12, 25, 55, 0.99)
+  );
+
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, 0.6),
+    inset 0 0 40px rgba(91, 192, 190, 0.18);
+}
+
+/* ========== TEXT ========== */
+.notes-content .note-card h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.notes-content .note-card h3 {
+  font-size: 24px;
+  margin-top: 36px;
+  margin-bottom: 16px;
+  color: #7fffd4;
+}
+
+.notes-content .note-card p,
+.notes-content .note-card li {
+  font-size: 18px;
+  line-height: 2;
+  color: #e2ecff;
+}
+
+/* ========== CODE BLOCK ========== */
+.notes-content .note-card pre {
+  width: 100%;
+  margin: 24px 0;
+
+  padding: 28px;
+  border-radius: 18px;
+  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.55);
+  color: #dbe7ff;
+
+  font-family: "Fira Code", monospace;
+  font-size: 15px;
+  line-height: 1.9;
+
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .notes-wrapper {
+    flex-direction: column;
+  }
+
+  .notes-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .notes-content {
+    padding: 40px 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .notes-content {
+    padding: 28px 18px;
+  }
+
+  .notes-content .note-card {
+    padding: 28px;
+  }
+
+  .notes-content .note-card h2 {
+    font-size: 26px;
+  }
+
+  .notes-content .note-card h3 {
+    font-size: 20px;
+  }
+}

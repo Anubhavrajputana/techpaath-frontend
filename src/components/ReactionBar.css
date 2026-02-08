@@ -1,0 +1,20 @@
+.reaction-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px;
+  margin-right: 6px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.reaction-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.reaction-btn.active {
+  background: #22c55e;
+  color: #000;
+  font-weight: 600;
+}

@@ -1,0 +1,153 @@
+/* ================= PAGE ================= */
+.blog-detail-page {
+  min-height: 100vh;
+  padding: 140px 20px 60px;
+  background: radial-gradient(circle at top, #0c1a3a, #040818);
+}
+
+/* ================= LOADING ================= */
+.loading {
+  color: #9fdcff;
+  text-align: center;
+  font-size: 1.3rem;
+  padding-top: 180px;
+}
+
+/* ================= CARD ================= */
+.blog-card {
+  max-width: 900px;
+  margin: auto;
+  background: linear-gradient(
+    160deg,
+    rgba(20, 40, 90, 0.95),
+    rgba(12, 25, 55, 0.98)
+  );
+  border-radius: 26px;
+  padding: 40px;
+  color: #eaf2ff;
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.6),
+    inset 0 0 25px rgba(91, 192, 190, 0.15);
+}
+
+/* ================= TITLE ================= */
+.blog-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+/* ================= MEDIA PREVIEW (FIXED SIZE) ================= */
+.blog-media {
+  width: 100%;
+  height: 420px;                 /* 🔥 FIXED HEIGHT */
+  margin: 25px 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  cursor: zoom-in;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IMAGE + VIDEO SAME RULE */
+.blog-media img,
+.blog-media video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;           /* 🔥 NO CROP, FULL IMAGE */
+  display: block;
+}
+
+/* ================= DESCRIPTION ================= */
+.blog-description {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #dbe7ff;
+  margin-bottom: 30px;
+}
+
+/* ================= COMMENT BOX ================= */
+.comment-box textarea {
+  width: 100%;
+  min-height: 100px;
+  background: rgba(10, 20, 45, 0.9);
+  border: 1px solid rgba(120, 180, 255, 0.3);
+  border-radius: 14px;
+  padding: 14px;
+  color: #fff;
+}
+
+.comment-box button {
+  margin-top: 12px;
+  padding: 10px 26px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #4cd137, #5bc0be);
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  color: #06141f;
+}
+
+/* ================= FULLSCREEN VIEWER ================= */
+.media-viewer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;
+}
+
+.media-viewer img,
+.media-viewer video {
+  max-width: 92%;
+  max-height: 92%;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 600px) {
+  .blog-card {
+    padding: 24px;
+  }
+
+  .blog-title {
+    font-size: 1.9rem;
+  }
+
+  .blog-media {
+    height: 260px;               /* 🔥 FIXED MOBILE HEIGHT */
+  }
+}
+/* ================= BLOG MEDIA ================= */
+.blog-media {
+  width: 100%;
+  height: 420px;
+  margin: 25px 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 🔥 MOST IMPORTANT FIX */
+.blog-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* full video, no crop */
+  background: #000;
+}
+
+.blog-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

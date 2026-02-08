@@ -1,0 +1,224 @@
+/* ===============================
+   ROOT THEME (TechPaath)
+   =============================== */
+:root {
+  --blue: #00c6ff;
+  --green: #6cff8d;
+  --dark: #020617;
+
+  --card-bg: rgba(8, 18, 35, 0.94);
+  --input-bg: rgba(255, 255, 255, 0.12);
+}
+
+/* ===============================
+   PAGE BACKGROUND
+   =============================== */
+.applypage-wrap {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background:
+    radial-gradient(circle at top, rgba(0,198,255,0.25), transparent 45%),
+    radial-gradient(circle at bottom, rgba(108,255,141,0.22), transparent 50%),
+    linear-gradient(135deg, #020617, #020617);
+
+  padding: 90px 20px;
+}
+
+/* ===============================
+   CARD
+   =============================== */
+.apply-card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  padding: 32px;
+  border-radius: 26px;
+  background: linear-gradient(135deg, #6cff8d, #00c6ff);
+  z-index: 1;
+  animation: fadeUp 0.8s ease;
+}
+
+/* Neon animated border */
+.apply-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(120deg, var(--blue), var(--green), var(--blue));
+  background-size: 300% 300%;
+  animation: borderFlow 6s linear infinite;
+  z-index: -1;
+}
+
+/* ===============================
+   BRAND HEADER
+   =============================== */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.brand-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow:
+    0 0 30px rgba(0,198,255,0.6),
+    0 0 45px rgba(108,255,141,0.45);
+  animation: float 3.5s ease-in-out infinite;
+}
+
+/* ===============================
+   FORCE DARK TEXT (READABILITY FIX)
+   =============================== */
+
+/* Main heading */
+.brand h2 {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: #0b1220 !important;
+  letter-spacing: 0.4px;
+  text-shadow: none !important;
+}
+
+/* Subtitle */
+.brand p {
+  margin-top: 6px;
+  font-size: 0.95rem;
+  color: #1f2937 !important;
+}
+
+/* ===============================
+   FORM
+   =============================== */
+.apply-form .field {
+  margin-bottom: 16px;
+}
+
+.apply-form label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #111827 !important;
+  margin-bottom: 6px;
+}
+
+/* INPUTS */
+.apply-form input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.9) !important;
+  border: 1px solid rgba(0,0,0,0.2);
+
+  color: #0b1220 !important;
+  font-size: 0.95rem;
+  transition: 0.3s ease;
+}
+
+.apply-form input::placeholder {
+  color: #4b5563 !important;
+}
+
+.apply-form input:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0,198,255,0.35);
+}
+
+/* ===============================
+   ACTION BUTTONS
+   =============================== */
+.actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.submit-btn {
+  flex: 1;
+  padding: 14px;
+  background: linear-gradient(90deg, var(--blue), var(--green));
+  color: #02131e;
+
+  border: none;
+  border-radius: 16px;
+  font-weight: 800;
+  cursor: pointer;
+
+  box-shadow:
+    0 12px 35px rgba(0,198,255,0.55),
+    0 0 25px rgba(108,255,141,0.45);
+
+  transition: all 0.35s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+}
+
+.cancel-btn {
+  padding: 14px 18px;
+  background: transparent;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.3);
+  color: #111827 !important;
+  cursor: pointer;
+}
+
+/* ===============================
+   MESSAGE
+   =============================== */
+.msg {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.msg.success,
+.msg.error {
+  color: #0b1220;
+}
+
+.msg.success {
+  background: rgba(6,95,70,0.25);
+}
+
+.msg.error {
+  background: rgba(127,29,29,0.25);
+}
+
+/* ===============================
+   ANIMATIONS
+   =============================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+@media (max-width: 640px) {
+  .apply-card { padding: 22px; }
+  .brand-logo { width: 56px; height: 56px; }
+}

@@ -1,0 +1,86 @@
+/* ===============================
+   MAIN CONTAINER
+   =============================== */
+.main-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   PAGE HEADING (ATTRACTIVE + ANIMATED)
+   =============================== */
+.heading {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 40px;
+
+  /* Solid attractive color (readable everywhere) */
+  color: #00c6ff;
+
+  letter-spacing: 0.5px;
+
+  /* Glow effect instead of gradient clip */
+  text-shadow:
+    0 0 8px rgba(0,198,255,0.6),
+    0 0 18px rgba(108,255,141,0.4);
+
+  animation: headingFade 0.9s ease forwards;
+}
+
+
+/* ===============================
+   PROJECTS CONTAINER
+   =============================== */
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* ===============================
+   PROJECT CARD TEXT STYLING
+   =============================== */
+.project-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0b1220; /* readable dark text */
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
+}
+
+.project-card .tech {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0284c7;
+  margin-bottom: 8px;
+}
+
+.project-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #475569; /* readable grey */
+}
+
+/* ===============================
+   TEXT HOVER EFFECT (SUBTLE)
+   =============================== */
+.project-card:hover h3 {
+  color: #0284c7;
+}
+
+/* ===============================
+   ANIMATIONS
+   =============================== */
+@keyframes headingFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

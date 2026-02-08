@@ -1,0 +1,87 @@
+.topic-page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* HERO */
+.topic-hero {
+  padding: 32px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.25);
+  text-align: center;
+}
+
+.topic-hero h1 {
+  font-size: 2.4rem;
+}
+
+.topic-hero span {
+  background: linear-gradient(90deg, #3b82f6, #22c55e);
+  background-clip: text;
+  color: transparent;
+}
+
+/* CARD */
+.topic-card {
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: 0.3s ease;
+}
+
+.topic-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.35);
+}
+
+/* CODE */
+.code-block {
+  background: #020617;
+  padding: 16px;
+  border-radius: 12px;
+  color: #22c55e;
+  font-family: "Fira Code", monospace;
+  margin-top: 10px;
+  overflow-x: auto;
+}
+
+/* IMAGE */
+.topic-page img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 16px;
+}
+
+.topic-hero-image {
+  max-width: 420px;
+  margin: 20px auto 0;
+}
+
+/* BORDER */
+.highlight {
+  border-left: 4px solid #3b82f6;
+}
+
+.success {
+  border-left: 4px solid #22c55e;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .topic-hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .topic-card {
+    padding: 18px;
+  }
+
+  .topic-page img {
+    max-height: 220px;
+  }
+}

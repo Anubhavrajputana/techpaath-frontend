@@ -1,0 +1,206 @@
+/* ===============================
+   FEATURES SECTION – FUTURISTIC
+================================ */
+.features-section {
+  background:
+    radial-gradient(circle at top, #0f2a44 0%, #020617 70%),
+    linear-gradient(180deg, #020617, #000);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(70px, 9vw, 120px) 0;
+}
+
+/* ===============================
+   SECTION TITLE
+================================ */
+.section-title {
+  font-weight: 900;
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 70px;
+  color: #eaffff;
+  text-shadow:
+    0 0 14px rgba(0,255,255,0.7),
+    0 0 36px rgba(76,209,55,0.45);
+}
+
+.section-title::after {
+  content: "";
+  width: 140px;
+  height: 4px;
+  background: linear-gradient(90deg, #00ffe0, #4cd137);
+  display: block;
+  margin: 18px auto 0;
+  border-radius: 50px;
+  box-shadow: 0 0 20px #00ffe0;
+}
+
+/* ===============================
+   GRID SYSTEM (MAIN FIX)
+   3 CARDS PER ROW
+================================ */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 🔥 ALWAYS 3 */
+  gap: 48px; /* 🔥 PERFECT SPACING */
+  padding: 0 24px;
+}
+
+/* ===============================
+   FEATURE CARD – COMPACT GLASS
+================================ */
+.feature-card {
+  background: linear-gradient(
+    145deg,
+    rgba(18, 36, 80, 0.95),
+    rgba(8, 18, 45, 0.98)
+  );
+
+  border-radius: 22px;
+  border: 1px solid rgba(0,255,255,0.22);
+  backdrop-filter: blur(26px);
+
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  box-shadow:
+    0 20px 55px rgba(0,0,0,0.7),
+    inset 0 0 28px rgba(0,255,255,0.08);
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* ===============================
+   HOVER – NO OVERLAP GUARANTEED
+================================ */
+.feature-card:hover {
+  transform: translateY(-14px); /* ❌ scale removed */
+  box-shadow:
+    0 32px 85px rgba(0,255,200,0.35),
+    inset 0 0 38px rgba(0,255,255,0.22);
+}
+
+/* ===============================
+   ICON
+================================ */
+.feature-icon {
+  font-size: 4.2rem;
+  margin-bottom: 22px;
+  color: #00ffe0;
+
+  filter:
+    drop-shadow(0 0 18px #00ffe0)
+    drop-shadow(0 0 35px rgba(0,255,255,0.65));
+
+  transition: transform 0.4s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.2) rotate(-4deg);
+}
+
+/* ===============================
+   TITLE
+================================ */
+.feature-title {
+  font-weight: 800;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: #ffffff;
+  text-shadow:
+    0 0 12px rgba(255,255,255,0.5),
+    0 0 24px rgba(0,255,255,0.35);
+}
+
+/* ===============================
+   DESCRIPTION
+================================ */
+.feature-desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #cfe9ff;
+}
+
+/* ===============================
+   CTA BUTTON
+================================ */
+.feature-cta {
+  margin-top: 22px;
+  display: inline-block;
+
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+
+  color: #0b1a14;
+  background: linear-gradient(90deg, #00ffe0, #4cd137);
+  padding: 10px 24px;
+  border-radius: 40px;
+
+  box-shadow:
+    0 0 16px rgba(0,255,255,0.7),
+    0 0 32px rgba(76,209,55,0.5);
+
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-cta {
+  transform: scale(1.08);
+}
+
+/* ===============================
+   RESPONSIVE BREAKPOINTS
+================================ */
+
+/* Tablet → 2 cards */
+@media (max-width: 992px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+/* Mobile → 1 card */
+@media (max-width: 576px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .feature-cta {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ===============================
+   BACKGROUND ENERGY
+================================ */
+.features-section::before,
+.features-section::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  filter: blur(150px);
+  z-index: 0;
+}
+
+.features-section::before {
+  top: -90px;
+  left: -90px;
+  background: rgba(0,255,200,0.3);
+}
+
+.features-section::after {
+  bottom: -110px;
+  right: -110px;
+  background: rgba(76,209,55,0.28);
+}

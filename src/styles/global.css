@@ -1,0 +1,184 @@
+/* ===============================
+   GLOBAL RESET (HARD RESET)
+================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ===============================
+   BODY
+================================= */
+body {
+  background: linear-gradient(135deg, #020b17, #072041);
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ===============================
+   NAVBAR (NO EXTRA SPACE)
+================================= */
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 72px;
+
+  background: #0b132b;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+
+  /* 🔥 IMPORTANT */
+  padding: 0 !important;
+}
+
+/* remove bootstrap padding */
+.custom-navbar .navbar-brand,
+.custom-navbar .navbar-nav {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ===============================
+   NAVBAR INNER
+================================= */
+.navbar-inner {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===============================
+   BRAND
+================================= */
+.brand-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ===============================
+   CENTER LINKS
+================================= */
+.nav-center {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* LINKS */
+.nav-center span,
+.profile-btn {
+  color: #e5e7eb;
+  font-weight: 500;
+
+  padding: 0 10px;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+/* hover */
+.nav-center span:hover,
+.profile-btn:hover {
+  color: #4cd137;
+}
+
+/* underline */
+.nav-center span::after,
+.profile-btn::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  bottom: 12px;
+
+  width: 80%;
+  height: 3px;
+  background: #4cd137;
+  border-radius: 10px;
+
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+/* active */
+.nav-center span.active,
+.profile-btn.active {
+  color: #4cd137;
+}
+
+.nav-center span.active::after,
+.profile-btn.active::after {
+  transform: scaleX(1);
+}
+
+/* ===============================
+   RIGHT SECTION
+================================= */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ===============================
+   PROFILE AVATAR
+================================= */
+.profile-pic {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #4cd137;
+  cursor: pointer;
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 10px rgba(76, 209, 55, 0.9);
+}
+
+/* ===============================
+   MAIN CONTENT OFFSET
+================================= */
+.main-content {
+  padding-top: 72px; /* EXACT navbar height */
+}
+
+/* ===============================
+   RESPONSIVE
+================================= */
+@media (max-width: 992px) {
+  .custom-navbar {
+    height: 80px;
+  }
+
+  .main-content {
+    padding-top: 80px;
+  }
+}

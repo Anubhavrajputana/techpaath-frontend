@@ -1,0 +1,98 @@
+/* START LEARNING — ULTRA PREMIUM */
+
+.sl-page {
+  background: radial-gradient(circle at top,#04162f,#020a13);
+  min-height: 100vh;
+  padding: 90px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow balls */
+.sl-page::before,
+.sl-page::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0,255,200,0.35), transparent);
+  filter: blur(80px);
+  border-radius: 50%;
+  animation: float 9s infinite ease-in-out alternate;
+}
+
+.sl-page::before {
+  top: 12%;
+  left: 8%;
+}
+
+.sl-page::after {
+  bottom: 10%;
+  right: 8%;
+  animation-duration: 12s;
+}
+
+.sl-title {
+  font-size: 46px;
+  font-weight: 900;
+  background: linear-gradient(90deg,#00eaff,#00ffa6);
+  background-clip: text;          /* Standard property */
+-webkit-background-clip: text;  /* WebKit browsers */
+color: transparent;
+-webkit-text-fill-color: transparent;
+
+  animation: fadeDown 1s ease;
+}
+
+.sl-sub {
+  color: #c8e9ff;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.sl-grid {
+  margin-top: 60px;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+}
+
+.sl-card {
+  background: rgba(255,255,255,0.06);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.35s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.sl-card:hover {
+  transform: translateY(-10px) scale(1.06) rotateX(6deg);
+  box-shadow: 0 25px 60px rgba(0,255,200,0.25);
+}
+
+.sl-card button {
+  margin-top: 14px;
+  padding: 10px 24px;
+  background: linear-gradient(90deg,#00eaff,#00ffa7);
+  border: none;
+  border-radius: 12px;
+  color: #00212c;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sl-card button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 16px rgba(0,255,200,0.4);
+}
+
+.sl-icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
