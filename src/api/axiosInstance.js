@@ -1,34 +1,39 @@
 import axios from "axios";
 
-/* ===============================
-   🌍 BASE URL (ENV SAFE)
-=============================== */
+/* =========================================================
+   🌍 BASE URL (ENV SAFE + PRODUCTION FALLBACK)
+========================================================= */
 const BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
   "https://techpaath-backend-main.onrender.com";
 
-/* ===============================
-   🚀 AXIOS INSTANCE
-=============================== */
+/* =========================================================
+   🚀 AXIOS INSTANCE (PRODUCTION READY)
+========================================================= */
 const axiosInstance = axios.create({
-  baseURL: `${BASE_URL}/api`,   // 👈 add /api if backend uses it
-  withCredentials: true,
-  timeout: 30000,               // 👈 higher for Render cold start
+  baseURL: `${BASE_URL}/api`,   // 👈 backend routes prefix
+  withCredentials: true,        // 👈 required for cookies/auth
+  timeout: 60000,               // 👈 Render cold start safe
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-/* ===============================
+/* =========================================================
    🔐 REQUEST INTERCEPTOR
-=============================== */
+   → Auto attach token
+========================================================= */
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    try {
+      const token = localStorage.getItem("token");
 
-    if (token) {
-      config.headers = config.headers || {};
-      config.headers.Authorization = `Bearer ${token}`;
+      if (token) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    } catch (err) {
+      console.warn("Token read error:", err);
     }
 
     return config;
@@ -36,14 +41,20 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-/* ===============================
+/* =========================================================
    🚨 RESPONSE INTERCEPTOR
-   =============================== */
+   → Global error handling
+========================================================= */
 axiosInstance.interceptors.response.use(
   (response) => response,
+
   (error) => {
-    /* TOKEN EXPIRED / INVALID */
+    /* ===============================
+       🔒 TOKEN EXPIRED / INVALID
+    =============================== */
     if (error.response?.status === 401) {
+      console.warn("🔒 Session expired. Redirecting to login...");
+
       localStorage.removeItem("token");
       localStorage.removeItem("user");
 
@@ -52,9 +63,27 @@ axiosInstance.interceptors.response.use(
       }
     }
 
-    /* SERVER DOWN / NETWORK ERROR */
+    /* ===============================
+       🚫 FORBIDDEN
+    =============================== */
+    if (error.response?.status === 403) {
+      console.warn("🚫 Access forbidden");
+    }
+
+    /* ===============================
+       🌐 SERVER / NETWORK ERROR
+    =============================== */
     if (!error.response) {
-      console.error("Server unreachable or network error");
+      console.error(
+        "🚨 Server unreachable / Network error / CORS issue"
+      );
+    }
+
+    /* ===============================
+       ⏱ TIMEOUT ERROR
+    =============================== */
+    if (error.code === "ECONNABORTED") {
+      console.error("⏱ Request timeout — Server cold start");
     }
 
     return Promise.reject(error);
