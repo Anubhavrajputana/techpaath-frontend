@@ -1,31 +1,81 @@
-import { createContext, useContext, useEffect, useState } from "react";
+// ===============================
+// AUTH CONTEXT – FINAL PRODUCTION READY
+// ===============================
+
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+
+import axios from "../api/axiosInstance";
 
 const AuthContext = createContext();
 
+// ===============================
+// PROVIDER
+// ===============================
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
   const [enrolledCourses, setEnrolledCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   /* ===============================
-     🔄 LOAD USER FROM STORAGE (ONCE)
+     🔄 LOAD USER + TOKEN (ON REFRESH)
   ================================ */
   useEffect(() => {
     try {
       const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
+      const storedToken = localStorage.getItem("token");
+
+      if (storedUser && storedToken) {
+        const parsedUser = JSON.parse(storedUser);
+
+        setUser(parsedUser);
+        setToken(storedToken);
+
+        // 🔐 Attach token globally
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${storedToken}`;
+
+        // 📦 Load enrollments
+        fetchEnrollments(storedToken);
       }
-    } catch {
-      localStorage.removeItem("user");
-      setUser(null);
+    } catch (err) {
+      console.error("Auth load error:", err);
+      logout();
+    } finally {
+      setLoading(false);
     }
   }, []);
 
   /* ===============================
-     🔐 LOGIN (SAFE & NORMALIZED)
+     📦 FETCH ENROLLMENTS
   ================================ */
-  const login = (userData, token) => {
-    const normalized = {
+  const fetchEnrollments = async (authToken) => {
+    try {
+      const res = await axios.get("/enrolls/my", {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+
+      const courses = res.data.map((e) => e.course);
+      setEnrolledCourses(courses);
+    } catch (err) {
+      console.warn("Enrollment fetch failed");
+      setEnrolledCourses([]);
+    }
+  };
+
+  /* ===============================
+     🔐 LOGIN
+  ================================ */
+  const login = (userData, authToken) => {
+    const normalizedUser = {
       _id: userData._id,
       name: userData.name,
       email: userData.email,
@@ -36,71 +86,95 @@ export const AuthProvider = ({ children }) => {
       year: userData.year || "",
     };
 
-    localStorage.setItem("user", JSON.stringify(normalized));
-    localStorage.setItem("token", token);
+    // Save to storage
+    localStorage.setItem(
+      "user",
+      JSON.stringify(normalizedUser)
+    );
+    localStorage.setItem("token", authToken);
 
-    setUser(normalized);
+    // Set state
+    setUser(normalizedUser);
+    setToken(authToken);
+
+    // Attach token globally
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${authToken}`;
+
+    // Load enrollments
+    fetchEnrollments(authToken);
   };
 
   /* ===============================
-     🔄 UPDATE USER (SAFE MERGE)
+     🔄 UPDATE USER
   ================================ */
   const updateUser = (data) => {
     setUser((prev) => {
       if (!prev) return prev;
 
-      const merged = {
+      const updated = {
         ...prev,
         ...data,
         avatar: data.avatar ?? prev.avatar,
       };
 
-      localStorage.setItem("user", JSON.stringify(merged));
-      return merged;
+      localStorage.setItem(
+        "user",
+        JSON.stringify(updated)
+      );
+
+      return updated;
     });
   };
 
   /* ===============================
-     📦 ENROLLMENTS (MANUAL ONLY)
+     📦 MANUAL ENROLLMENT REFRESH
   ================================ */
   const refreshEnrollments = async () => {
-    try {
-      const { default: axios } = await import("../api/axiosInstance");
-      const res = await axios.get("/enrolls/my");
-      setEnrolledCourses(res.data.map((e) => e.course));
-    } catch {
-      setEnrolledCourses([]);
-    }
+    if (!token) return;
+    await fetchEnrollments(token);
   };
 
   /* ===============================
-     🚪 LOGOUT (SOFT RESET)
+     🚪 LOGOUT
   ================================ */
   const logout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
 
-    setUser(null);
-    setEnrolledCourses([]);
+    delete axios.defaults.headers.common[
+      "Authorization"
+    ];
 
-    // ❌ NO HARD RELOAD
-    // navigation should be handled by router
+    setUser(null);
+    setToken(null);
+    setEnrolledCourses([]);
+  };
+
+  /* ===============================
+     CONTEXT VALUE
+  ================================ */
+  const value = {
+    user,
+    token,
+    enrolledCourses,
+    login,
+    logout,
+    updateUser,
+    refreshEnrollments,
+    isAuthenticated: !!user,
+    loading,
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        enrolledCourses,
-        login,
-        updateUser,
-        refreshEnrollments,
-        logout,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
 };
 
+// ===============================
+// HOOK
+// ===============================
 export const useAuth = () => useContext(AuthContext);
