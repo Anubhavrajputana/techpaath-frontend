@@ -22,7 +22,6 @@ import ProjectsPage from "../pages/ProjectsPage";
 import EventsPage from "../pages/EventsPage";
 import BlogFeed from "../pages/BlogFeed";
 import BlogDetail from "../pages/BlogDetail";
-
 import RecordedVideos from "../pages/RecordedVideos";
 import Notes from "../pages/Notes";
 import NotesViewer from "../pages/NotesViewer";
@@ -41,10 +40,20 @@ import AdminVideos from "../pages/AdminVideos";
 import WebinarDashboard from "../pages/admin/WebinarDashboard";
 import AdminRoute from "../protection/AdminRoute";
 
+/* ===================================
+   🔐 PROTECTED ROUTE WRAPPER
+=================================== */
+const ProtectedRoute = ({ children, isLoggedIn }) => {
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
+
 export default function AppRoutes() {
   const location = useLocation();
 
-  /* 🔥 SINGLE SOURCE OF TRUTH */
+  /* 🔥 AUTH CONTEXT */
   const { user } = useAuth();
 
   const isLoggedIn = !!user;
@@ -57,39 +66,42 @@ export default function AppRoutes() {
 
   return (
     <>
-      {/* NAVBAR */}
+      {/* ===============================
+          NAVBAR
+      =============================== */}
       <NavbarComponent
         isLoggedIn={isLoggedIn}
         userProfilePic={userProfilePic}
       />
 
-      {/* MAIN CONTENT */}
+      {/* ===============================
+          MAIN CONTENT
+      =============================== */}
       <main className="main-content">
         <Routes>
-          {/* PUBLIC ROUTES */}
+
+          {/* ========= PUBLIC ========= */}
           <Route path="/" element={<Home />} />
+
           <Route
             path="/login"
-            element={isLoggedIn ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            element={isLoggedIn ? <Navigate to="/" /> : <Signup />}
+            element={!isLoggedIn ? <Login /> : <Navigate to="/" />}
           />
 
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/signup"
+            element={!isLoggedIn ? <Signup /> : <Navigate to="/" />}
+          />
+
           <Route path="/internships" element={<Internships />} />
           <Route path="/apply" element={<ApplyForm />} />
           <Route path="/courses" element={<PremiumCourses />} />
           <Route path="/checkout" element={<CourseCheckout />} />
-          <Route path="/enroll" element={<EnrollPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/contests" element={<EventsPage />} />
           <Route path="/blogs" element={<BlogFeed />} />
           <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/videos" element={<RecordedVideos />} />
-          <Route path="/notes" element={<Notes />} />
-          <Route path="/notes/:language" element={<NotesViewer />} />
           <Route path="/about" element={<About />} />
           <Route path="/get-started" element={<GetStarted />} />
           <Route path="/start-learning" element={<StartLearning />} />
@@ -97,7 +109,46 @@ export default function AppRoutes() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
 
-          {/* ADMIN ROUTES */}
+          {/* ========= USER PROTECTED ========= */}
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/enroll"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <EnrollPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/notes"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Notes />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/notes/:language"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <NotesViewer />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* ========= ADMIN ========= */}
+
           <Route
             path="/admin"
             element={
@@ -106,6 +157,7 @@ export default function AppRoutes() {
               </AdminRoute>
             }
           />
+
           <Route
             path="/admin/create"
             element={
@@ -114,6 +166,7 @@ export default function AppRoutes() {
               </AdminRoute>
             }
           />
+
           <Route
             path="/admin/edit/:id"
             element={
@@ -122,6 +175,7 @@ export default function AppRoutes() {
               </AdminRoute>
             }
           />
+
           <Route
             path="/admin/videos"
             element={
@@ -130,6 +184,7 @@ export default function AppRoutes() {
               </AdminRoute>
             }
           />
+
           <Route
             path="/admin/webinars/:id"
             element={
@@ -139,12 +194,15 @@ export default function AppRoutes() {
             }
           />
 
-          {/* FALLBACK */}
+          {/* ========= FALLBACK ========= */}
           <Route path="*" element={<Navigate to="/" replace />} />
+
         </Routes>
       </main>
 
-      {/* FOOTER ONLY ON HOME */}
+      {/* ===============================
+          FOOTER (ONLY HOME)
+      =============================== */}
       {location.pathname === "/" && <Footer />}
     </>
   );
